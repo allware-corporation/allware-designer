@@ -1,0 +1,27 @@
+modifications ...
+Mario
+--------
+1- on the leftside Menu - move the Registry drop down to the top
+2- on registry page - make one component for header, content, footer
+3. on clinical form page - make the form in one panel, and the table list in another panel
+-------
+a Panel is also called a Component
+
+files to be modified
+RegistryPage.html, clinical_forms.html, and mine.js
+
+Robbie
+-------
+1- on the Home Page - integrate PageDesigner with two Panels and Save Panels
+2- on Page Designer - save panel definition to MySQL server, modify panels
+
+files to be modified
+Index.html
+-- page designer files ---
+
+
+
+
+
+
+ 

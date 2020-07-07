@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Html Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font-Awesome CSS  -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+  </head>
+  <body style="height:100vh">
+
+    <style>
+      .generated-form{
+        margin-top: 1.25rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .generated-form-group{
+        padding-left: 1.25rem;
+        padding-top: 1.25rem;
+      }
+
+      .dropdown-item{
+        cursor: pointer;
+      }
+      select{
+        border:0px !important
+      }
+
+      .SELECTED{
+        background-color: red;
+      }
+
+      .left{ background-color: aliceblue; }
+      .right{ background-color: antiquewhite; }
+
+      .top{ background-color: aliceblue; }
+      .bottom { background-color: antiquewhite; }
+    </style>
+
+    <div id="generator_group" class="container-fluid h-100">
+      <!-- Create Content -->
+      <div class="row" id="generators">
+        
+        <div class="col-12">
+          <!-- Generator Start-->
+          <div class="card ">
+            <div class="card-header mx-0 row align-items-center">
+              <div class="col-4">
+                <label>GEN V1.1</label>
+              </div>
+              <div class="col-4 text-center">
+                <button class="btn btn-md btn-success" onclick="restart()" > REDO <i class="fa fa-sync"></i></button>
+              </div>
+              <div class="col-4 text-center">
+                <button class="btn btn-md btn-info" onclick="printDiv('generated_content')" disabled> PRINT <i class="fa fa-print"></i></button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div >
+                <!-- <div class=" row align-items-center">
+                  <div class="col-12 col-md-6">
+                    <label>Page</label>
+                  </div>
+                  <div class="col-12 col-md-6 text-center">
+                    <div class="dropdown">
+                      <button id="page_dropdown" class="btn btn-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select a Page
+                      </button>
+                      <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" onclick="setPage('left_right')">Left Right</a>
+                        <a class="dropdown-item" onclick="setPage('top_bottom')">Top Bottom</a>
+                        <a class="dropdown-item" onclick="setPage('preview')">Preview</a>
+                        <a class="dropdown-item" onclick="setPage('myclinicals_form')">myclinicals_form</a>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+                
+                <br/>
+
+                <div class=" row align-items-center">
+                  <div class="col-12 col-md-6">
+                    <label>Template</label>
+                  </div>
+                  <div class="col-12 col-md-6 text-center">
+                    <div class="dropdown">
+                      <button id="template_dropdown" class="btn btn-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Select a Template
+                      </button>
+                      <div class="dropdown-menu dropdown-primary" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" onclick="setTemplate('default')">None</a>
+                        <a class="dropdown-item" onclick="setTemplate('bootstrap_card')">Bootstrap Card</a>
+                        <a class="dropdown-item" onclick="setTemplate('bootstrap_card_blue')">Bootstrap Card Blue</a>
+                        <a class="dropdown-item" onclick="setTemplate('bootstrap_tab')">Bootstrap Tab</a>
+                        <a class="dropdown-item" onclick="setTemplate('myclinicals_login')">MyClinicals Login</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br/>
+                <div class=" row align-items-center">
+                  <div class="col-12 col-md-6">
+                    <label>Form Type</label>
+                  </div>
+                  <div class="col-12 col-md-6 text-center">
+                    <div class="dropdown">
+                      <button id="type_dropdown" class="btn btn-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+                        Select a Type
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" onclick="changeGenerator(1)">Multiple Choice</a>
+                        <a class="dropdown-item" onclick="changeGenerator(2)">Written Response</a>
+                        <a class="dropdown-item" onclick="changeGenerator(3)">Table</a>
+                        <a class="dropdown-item" onclick="changeGenerator(4)">Form</a>
+                        <a class="dropdown-item" onclick="changeGenerator(5)">List</a>
+                        <a class="dropdown-item" onclick="changeGenerator(6)">Login Form</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <br/>
+
+              <div id="generator_components" class="animated fadeIn" style="display: none;">
+                <!-- Header --> 
+                <div id="header_group">
+                  <div class="form-group">
+                    <label for="gen_footer" class="bmd-label-floating">Header</label>
+                    <input class="form-control" type="text" id="gen_header" disabled>
+                    <span class="bmd-help">Text for the top of your component</span>
+                  </div>
+                </div>
+                <!-- Header --> 
+                
+
+                <!-- Body --> 
+                <div class="my-3">
+                  <div>
+                    <!-- Multiple Choice Gen -->
+                    <div class="generator" id="multiple_choice_gen" style="display: none;">
+
+                      <div id="responses">
+
+                        <div id="response" class="form-group">
+                          <div class="row">
+                            <div class="col-10">
+                              <label>Response</label>
+                              <input id="responseText" class="form-control response">
+                            </div>
+                            <div class="col-2">
+                              <label>Value</label>
+                              <input id="responseVal" class="form-control response-value">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group">
+                        <div class="row justify-content-center">
+                          <button class="btn btn-md btn-success" onclick="addMultipleChoiceResponseGenerator()">Add Response <i class="fas fa-clone"></i></button>
+                        </div>
+                      </div>
+
+                    </div>
+                    <!-- Multiple Choice Gen END -->
+
+                    <!-- Written Response Gen -->
+                    <div class="generator" id="written_response_gen" style="display: none;">
+
+                      <div class="form-group">
+                        <label>Max Word Count</label>
+                        <input class="form-control" id="maxWordCount" type="number"/>
+                      </div>
+
+                    </div>
+                    <!-- Written Response Gen END -->
+
+                    <!-- Table Gen -->
+                    <div class="generator" id="table_gen" style="display: none;">
+
+                      <!--<div class="form-group">
+                        <label for="json_table_data">JSON Data</label>
+                        <textarea class="form-control" id="json_table_data"></textarea>
+                      </div>-->
+
+                      <div class="form-group row align-items-center">
+                        <div class="col-6">
+                          <label  class="text-muted">API Call</label>
+                        </div>
+                        <div class="col-6 text-center">
+                          <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Select Call
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <a class="dropdown-item" onclick="setData('MYCLINICALS')">MYCLINICALS</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <label class="text-muted">Columns</label>
+
+                      <div class="form-group row" id="table_columns">
+                        <!-- Generated Table Columns -->
+                      </div>
+
+                      <button id="add_column_btn" class="btn btn-sm btn-success" disabled="true" onclick="addColumnDropdown()">Add Column <i class="fa fa-plus"></i></button>
+
+                    </div>
+                    <!-- Table Gen END -->
+
+                    <!-- Form Gen -->
+                    <div class="generator" id="form_gen" style="display: none;">
+
+                      <div id="form_gen_inputs">
+                        
+                        <!--Generated Inputs Here-->
+                        
+                      </div>
+
+                      <div class="form-group w-100">
+                        <div class="row justify-content-center">
+                          <div class="dropdown">
+                            <button class="btn btn-md btn-success dropdown-toggle w-100" type="button" id="input_type_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Add Input Group
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="input_type_dropdown">
+                              <a class="dropdown-item" onclick="createTextboxInput('form_gen_inputs')">Textbox</a>
+                              <a class="dropdown-item" onclick="createCheckboxInput('form_gen_inputs')">Checkbox</a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+
+                    </div>
+                    <!-- Form Gen END -->
+
+                    <!-- List Gen -->
+                    <div class="generator" id="list_gen" style="display: none;">
+
+                      <div id="list_gen_inputs">
+                        
+                        <!--Generated Inputs Here-->
+                        
+                      </div>
+
+                      <div class="form-group w-100">
+                        <div class="row justify-content-center">
+                          <div class="dropdown">
+                            <button class="btn btn-md btn-success dropdown-toggle w-100" type="button" id="input_type_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Add Input Group
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="input_type_dropdown">
+                              <a class="dropdown-item" onclick="createLabelInput('list_gen_inputs')">Textbox</a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+
+                    </div>
+                    <!-- List Gen END -->
+
+                    <!-- Login Gen -->
+                    <div class="generator" id="login_gen" style="display: none;">
+
+                      <div id="login_gen_inputs">
+                        
+                        <!--Generated Inputs Here-->
+                        
+                      </div>
+
+                      <div class="form-group w-100">
+                        <div class="row justify-content-center">
+                          <div class="dropdown">
+                            <button class="btn btn-md btn-success dropdown-toggle w-100" type="button" id="input_type_dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Add Input Group
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="input_type_dropdown">
+                              <a class="dropdown-item" onclick="createTextboxInput('login_gen_inputs')">Textbox</a>
+                              <a class="dropdown-item" onclick="createButtonInput('login_gen_inputs')">Button</a>
+                              <a class="dropdown-item" onclick="createLineBreakInput('login_gen_inputs')">Line Break</a>
+                            </div>
+                          </div>
+                        </div>
+                        
+                      </div>
+
+                    </div>
+                    <!-- Login Gen END -->
+
+                  </div>
+                </div>
+                <!-- Body --> 
+
+                <!-- Footer --> 
+                <div id="footer_group">
+                  <div class="form-group">
+                    <label for="gen_footer" class="bmd-label-floating">Footer</label>
+                    <input class="form-control" type="text" id="gen_footer" disabled>
+                    <span class="bmd-help">Text for the bottom of your component</span>
+                  </div>
+                </div>
+                <!-- Footer --> 
+
+                <div class="form-group">        
+                  <div class="col text-right">
+                    <button class="btn btn-md btn-primary" id="generate_btn" onclick="generateAndAppend()" disabled >Generate <i class="fa fa-arrow-right"></i></button>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+            
+          </div>
+          <!-- Generator END -->
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- Imports -->
+    <script src="js/autoResize.js"></script>
+    <script src="https://kit.fontawesome.com/7333cdb3ca.js" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+
+    <!-- Generator -->
+    <script src="generator/js/apiService.js"></script>
+    <script src="generator/js/generate.js"></script>
+    <script src="generator/js/generateTable.js"></script>
+    <script src="generator/js/inputs.js"></script>
+    <script src="generator/js/template.js"></script>
+    <script src="generator/js/savedTemplates.js"></script>
+    <script src="generator/js/page.js"></script>
+    <script src="generator/js/savedPages.js"></script>
+
+    <script type="application/javascript">
+
+      //incomplete
+      var _generator = document.getElementById("generator").outerHTML;
+      var _template;
+      var _page;
+      var _selectedDiv;
+
+      var _generatedElements = [];
+      
+      function restart(){
+        location.reload();
+      }
+
+      function setTemplate(templateName){
+        _template = getTemplate(templateName)
+
+        if (_template.hasHeader){ $("#header_group").show() }
+        else { $("#header_group").hide() }
+       
+        if (_template.hasFooter){$("#footer_group").show()}
+        else { $("#footer_group").hide() }
+
+        $("#type_dropdown").prop("disabled", false)
+
+      }
+
+      //jquery element methods
+      $('textarea').autoResize();
+
+      function addMultipleChoiceResponseGenerator(){
+        var newResponseField = $( "#response" ).clone();
+        newResponseField.appendTo( "#responses" );
+      }
+
+      function clearFormObjects(){
+        var formObjects = []
+        $( "input" ).map(function() {
+          $(this).val(null)
+        })
+      }
+
+      var _generatorType = 0;
+
+      function changeGenerator(type){
+
+        $("#generate_btn").prop("disabled", false)
+        $("#gen_header").prop("disabled", false)
+        $("#gen_footer").prop("disabled", false)
+
+        //hide all forms
+        $(".generator").each(function(){
+          $(this).hide()
+        })
+
+        if (type == 1){
+          //show multiple choice form
+          clearFormObjects()
+          $("#multiple_choice_gen").toggle()
+        }
+        else if (type == 2){
+          //show written response form
+          clearFormObjects()
+          $("#written_response_gen").toggle()
+        }
+        else if (type == 3){
+          //show written response form
+          clearFormObjects()
+          $("#table_gen").toggle()
+        }
+        else if (type == 4){
+          //show written response form
+          clearFormObjects()
+          $("#form_gen").toggle()
+        }
+        else if (type == 5){
+          //show written response form
+          clearFormObjects()
+          $("#list_gen").toggle()
+        }
+        else if (type == 6){
+          //show written response form
+          clearFormObjects()
+          $("#login_gen").toggle()
+        }
+
+        _generatorType = type;
+        
+        $("#generator_components").show()
+      }
+
+      function addColumnDropdown(){
+        var parentId = "table_columns"
+        var columns = getColumns(_data)
+        appendColumnInput(columns, parentId)
+      }
+
+      var _data;
+      function setData(){
+        $("#add_column_btn").prop("disabled", false)
+
+        //example of syncronous api call
+        _data = get('MYCLINICALS');
+      }
+
+      function generateAndAppend(){
+        var generatedElement = generate(_generatorType, _data, _template)
+        console.log(generatedElement)
+        _selectedDiv.append(generatedElement[0])
+      }
+
+      function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+      }
+        
+    </script>
+
+  </body>
+</html>

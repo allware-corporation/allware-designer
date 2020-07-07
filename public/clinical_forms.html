@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<div class="clinicalFormsDiv">
+		<div class="clinicalFormsHeader">
+			<p>SiteHelpFiles &nbsp;-&nbsp;&nbsp; <button class="btn btn-primary">Add</button>&nbsp; <button class="btn btn-info">Edit</button>&nbsp; <button class="btn btn-warning">Delete</button></p>
+		</div>
+		<div style="padding: 10px;">
+			<!-- Nav tabs -->
+		  	<ul class="nav nav-tabs" role="tablist" style="padding: 5px">
+			    <li class="nav-item">
+			      <a class="nav-link text-info active" data-toggle="tab" href="#menu-item-profile">Menu Item Profile</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" data-toggle="tab" href="#page-settings">Page Settings</a>
+			    </li>
+		  	</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+			    <div id="menu-item-profile" class="tab-pane active"><br>
+			      <p id="formMenuGroup">Menu Group...................................Patient Management</p>
+			      <p id="formMenuItem">--Menu Item....................................Add / Update Patients </p>
+			    </div>
+			    <div id="page-settings" class="tab-pane fade"><br>
+			    	<h3>Page Settings</h3>
+			    </div>
+			</div>
+		</div>
+	</div><br/>
+	<div class="card">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table">
+              	<thead class="text-success">
+                    <tr>
+                    	<th>Menu Group</th>
+                    	<th>Menu Item</th>
+                    	<th>Read Access</th>
+	                    <th>Write Access</th>
+	                    <th>SiteID</th>
+                  	</tr>
+          		</thead>
+              	<tbody id="form-table">
+                    <tr><td>1</td><td>Dakota Rice</td><td>Niger</td><td>Oud-Turnhout</td><td class="text-primary">$36,738</td></tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var formMenuGroup = document.getElementById("formMenuGroup");
+		formMenuGroup.innerHTML = `Menu Group...............................` + leftSideMenu[selectedRegistryId][leftSideMenu_group].menuGroup;
+		var formMenuItem = document.getElementById("formMenuItem");
+		formMenuItem.innerHTML = `Menu Item...............................` + leftSideMenu[selectedRegistryId][leftSideMenu_group].subMenuText[leftSideMenu_item];
+		var temp='';
+		for ( var j = 0; j < grid.length; j++ ) {
+			temp+= `<tr><td>` + grid[j].menuGroup + `</td><td>` + grid[j].menuItem + `</td><td>` + grid[j].readAccess + `</td><td>` + grid[j].writeAccess + `</td><td>` + grid[j].siteId + `</td></tr>`;
+		} 
+		// for ( var j = 0; j < leftSideMenu[selectedRegistryId].length; j++) {
+		// 	for ( var k = 0; k < leftSideMenu[selectedRegistryId][j].subMenuText.length; k++ ) {
+		// 		if ( j == leftSideMenu_group && k == leftSideMenu_item) {
+		// 			temp+= `<tr><td class="text-info">` + leftSideMenu[selectedRegistryId][j].text + `</td><td class="text-info">` + leftSideMenu[selectedRegistryId][j].subMenuText[k] + `</td><td class="text-info">View</td><td class="text-info">Edit</td><td class="text-info">168</td></tr>`;
+		// 		}
+		// 		else temp+= `<tr><td>` + leftSideMenu[selectedRegistryId][j].text + `</td><td>` + leftSideMenu[selectedRegistryId][j].subMenuText[k] + `</td><td>View</td><td>Edit</td><td>168</td></tr>`;
+		// 	}
+		// }
+		var formTable = document.getElementById("form-table");
+		formTable.innerHTML = temp;
+	})
+</script>
+</html>
