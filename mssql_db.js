@@ -37,10 +37,16 @@
 // module.exports = clinical_connection;
 
 var sql = require('mssql');
+// var config = {
+// 	user: 'allware',
+// 	password: 'fjdlkgjrjd',
+//                   server: 'localhost', 
+//                   database: 'clinicals' 
+// };
 var config = {
-	user: 'allware',
-	password: 'fjdlkgjrjd',
-                  server: 'localhost', 
+	user: 'root',
+	password: 'Potenza@123',
+                  server: 'localhost:3306', 
                   database: 'clinicals' 
 };
 module.exports = config;
