@@ -4,7 +4,6 @@ exports.index = function(req, res){
   // req.getConnection(function(err,connection){   
     connection.query('SELECT * FROM home',function(err,rows)
     {
-        
         if(err)
             console.log("Error Selecting : %s ",err );
         console.log('Database connected');
@@ -19,6 +18,7 @@ exports.list = function(req, res){
        
         var query = connection.query('SELECT * FROM home',function(err,rows)
         {
+          console.log("Call List");
             if(err)
                 console.log("Error Selecting : %s ",err );
             res.setHeader('Content-Type', 'application/json');

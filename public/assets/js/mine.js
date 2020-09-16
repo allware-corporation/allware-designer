@@ -20,7 +20,7 @@ var grid;
 
 function getSelectedClinicalInfo() {
   $.ajax({
-    url: 'http://localhost:4300/clinicals',
+    url: '/clinicals',
     type: 'GET',
     success: function(data) {
       //called when successful
@@ -44,7 +44,7 @@ function getSelectedClinicalInfo() {
 
 function getClinicals() {
     $.ajax({
-      url: 'http://localhost:4300/clinicals',
+      url: '/clinicals',
       type: 'GET',
       success: function(data) {
         //called when successful
@@ -74,7 +74,7 @@ function getClinicals() {
 
 function saveHomeScreenColor(id) {
   $.ajax({
-    url: 'http://localhost:4300/clinicals/updateSelectedColor',
+    url: '/clinicals/updateSelectedColor',
     type: 'post',
     data: {
       id: clinicals[selectAppId].id,
@@ -93,7 +93,7 @@ function saveHomeScreenColor(id) {
 
 function saveHomeScreenSelectedAppId(id) {
   $.ajax({
-    url: 'http://localhost:4300/clinicals/updateSelectedAppId',
+    url: '/clinicals/updateSelectedAppId',
     type: 'post',
     data: {
       id: clinicals[id].id,
@@ -112,7 +112,7 @@ function saveHomeScreenSelectedAppId(id) {
 
 function saveHomeScreenBackground(id) {
   $.ajax({
-    url: 'http://localhost:4300/clinicals/updateSelectedMainImg',
+    url: '/clinicals/updateSelectedMainImg',
     type: 'post',
     data: {
       id: clinicals[selectAppId].id,
@@ -292,7 +292,7 @@ function changeColor(id) {
 // HomeScreen change Main Image
 function changeHomeScreenImg(clinical) {
   $.ajax({
-    url: 'http://localhost:4300/clinicals/uploadImage',
+    url: '/clinicals/uploadImage',
     type: 'post',
     data: {
       id: clinical.id,
@@ -315,10 +315,11 @@ function changeHomeScreenImg(clinical) {
 
 function getRegistries() {
     $.ajax({
-      url: 'http://localhost:4300/registry',
+      url: '/registry',
       type: 'GET',
       success: function(data) {
         //called when successful
+        console.log(data);
         application = data;
         for ( var i = 0; i < application.length; i++) {
             application[i].mainImg = JSON.parse(application[i].mainImg);
@@ -339,7 +340,7 @@ function getRegistries() {
 
 function getLeftSideMenu() {
     $.ajax({
-      url: 'http://localhost:4300/registry/leftSideMenu',
+      url: '/registry/leftSideMenu',
       type: 'GET',
       success: function(data) {
         //called when successful
@@ -429,7 +430,7 @@ function getLeftSideMenu() {
 }
 function getGrid() {
     $.ajax({
-      url: 'http://localhost:4300/registry/grid',
+      url: '/registry/grid',
       type: 'GET',
       success: function(data) {
         //called when successful
@@ -443,7 +444,7 @@ function getGrid() {
 }
 function saveRegistryChangedMainImg(id, selectedImgId, imgUrl) {
   $.ajax({
-    url: 'http://localhost:4300/registry/changeMainImg',
+    url: '/registry/changeMainImg',
     type: 'post',
     data: {
       id: application[id].id,
@@ -602,7 +603,7 @@ function changeMainImg(imgUrl) {
 // Registry change Main Image
 function changeRegistryImg(registry) {
   $.ajax({
-    url: 'http://localhost:4300/registry/uploadImage',
+    url: '/registry/uploadImage',
     type: 'post',
     data: {
       id: registry.id,

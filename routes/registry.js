@@ -3,38 +3,43 @@ var connection = require('../mysql_db');
 var sql = require("mssql");
 var config = require('../mssql_db');
 exports.list = function(req, res){
-
-  sql.connect(config, function(err) {
-    if (err) { console.log(err); }
-    var request = new sql.Request();
-    request.query('select * from registry', function(err, data) {
-      if (err) { console.log(err); }
+  // sql.connect(config, function(err) {
+  //   if (err) { console.log(err); }
+  //   var request = new sql.Request();
+  //   request.query('select * from registry', function(err, data) {
+  //     if (err) { console.log(err); }
+  //     res.setHeader('Content-Type', 'application/json');
+  //     res.send(JSON.stringify(data.recordset));
+  //   })
+  // })
+  var query = connection.query('SELECT * FROM registry',function(err,rows)
+  {
+      if(err)
+          console.log("Error Selecting : %s ",err );
       res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(data.recordset));
-    })
-  })
-  
+      res.send(JSON.stringify(rows));
+   });
 };
 
 //Get LeftSideMenu
 exports.leftSideMenu = function(req, res){
 
-  sql.connect(config, function(err) {
-    if (err) { console.log(err); }
-    var request = new sql.Request();
-    request.query('select * from LeftSideMenu', function(err, data) {
-      if (err) { console.log(err); }
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify(data.recordset));
-    })
-  })
-  // var query = connection.query('SELECT * FROM leftSideMenu',function(err,rows)
-  // {
-  //     if(err)
-  //         console.log("Error Selecting : %s ",err );
+  // sql.connect(config, function(err) {
+  //   if (err) { console.log(err); }
+  //   var request = new sql.Request();
+  //   request.query('select * from LeftSideMenu', function(err, data) {
+  //     if (err) { console.log(err); }
   //     res.setHeader('Content-Type', 'application/json');
-  //     res.send(JSON.stringify(rows));
-  //  });
+  //     res.send(JSON.stringify(data.recordset));
+  //   })
+  // })
+  var query = connection.query('SELECT * FROM LeftSideMenu',function(err,rows)
+  {
+      if(err)
+          console.log("Error Selecting : %s ",err );
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify(rows));
+   });
 };
 
 //Get Grid
